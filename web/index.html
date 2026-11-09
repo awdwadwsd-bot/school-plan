@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6fb">
+  <title>LernZeit — Dein Schultag im Blick</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#overview"><span class="brand-mark">l</span><span>LernZeit<small>DEIN SCHULTAG, GUT SORTIERT</small></span></a>
+    <nav id="nav">
+      <button class="nav-item active" data-page="overview"><span>⌂</span> Übersicht</button>
+      <button class="nav-item" data-page="timetable"><span>▦</span> Stundenplan</button>
+      <button class="nav-item" data-page="tasks"><span>✓</span> Hausaufgaben</button>
+      <button class="nav-item" data-page="substitutions"><span>↗</span> Vertretungsplan</button>
+      <button class="nav-item" data-page="calendar"><span>▣</span> Arbeitskalender</button>
+    </nav>
+    <div class="side-bottom">
+      <button class="nav-item" id="settings-open"><span>⚙</span> Portal verbinden</button>
+      <div class="connection"><i id="connection-dot"></i><span id="connection-text">Lokaler Modus</span></div>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div id="today-label"></div><div class="top-actions"><button class="icon-button" id="refresh" title="Daten aktualisieren">↻</button><button class="primary" id="add-task"><b>＋</b> Aufgabe hinzufügen</button><button class="avatar" id="account-button" title="Portal verbinden">L</button></div></header>
+    <section id="page" class="page"></section>
+  </main>
+  <dialog id="portal-dialog" class="modal">
+    <form method="dialog" id="portal-form">
+      <button class="close" value="cancel" aria-label="Schließen">×</button>
+      <div class="eyebrow">SCHULPORTAL HESSEN</div><h2>Portal verbinden</h2>
+      <p class="muted">Melde dich mit deiner Schul-ID und deinen Zugangsdaten an. Bei Online-Nutzung werden sie über HTTPS an den App-Server übertragen und dort nur während der Sitzung im Arbeitsspeicher verarbeitet. Im lokalen Modus bleiben sie auf diesem PC.</p>
+      <label>Schul-ID<input name="school_id" autocomplete="organization" required></label>
+      <label>Benutzername<input name="username" autocomplete="username" required></label>
+      <label>Passwort<input name="password" type="password" autocomplete="current-password" required></label>
+      <div class="form-error" id="login-error"></div>
+      <button class="primary wide" id="login-submit" value="default">Verbinden und Daten laden</button>
+      <div class="security-note">🔒 Verbindung direkt zum lokalen Server · Portalzugriffe erfolgen lesend</div>
+    </form>
+  </dialog>
+  <dialog id="task-dialog" class="modal">
+    <form method="dialog" id="task-form">
+      <button class="close" value="cancel" aria-label="Schließen">×</button>
+      <div class="eyebrow">DEINE AUFGABEN</div><h2>Aufgabe hinzufügen</h2>
+      <label>Fach<input name="subject" placeholder="z. B. Mathematik"></label>
+      <label>Aufgabe<input name="title" placeholder="Was ist zu tun?" required></label>
+      <label>Notiz<textarea name="description" rows="3" placeholder="Seiten, Nummern oder weitere Hinweise"></textarea></label>
+      <div class="form-row"><label>Fällig am<input name="date" type="date" required></label><label>Erinnerung am Vortag<input name="reminder_time" type="time" value="18:00" required></label></div>
+      <button class="primary wide" value="default">Aufgabe speichern</button>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
+
